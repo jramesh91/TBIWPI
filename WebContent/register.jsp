@@ -11,8 +11,8 @@ table.inner{border: 0px}
 </head>
  
 <body>
-<h3>Student Registration Form</h3>
-<form action="RegisterServlet" method="POST">
+<h3>TBI Surrogate Registration Form</h3>
+<form action="SurrogateServlet" method="POST">
  
 <table align="center" cellpadding = "10">
  

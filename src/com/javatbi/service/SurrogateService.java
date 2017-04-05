@@ -8,16 +8,16 @@ import com.javatbi.hibernate.util.HibernateUtil;
 import com.javatbi.model.Surrogate;
 import com.javatbi.model.User;
 
-public class RegisterService {
-	/*public boolean register(Surrogate user) {
+public class SurrogateService {
+	public boolean register(Surrogate surr) {
 		Session session = HibernateUtil.openSession();
-		if (isUserExists(user))
+		if (isSurrogateExists(surr))
 			return false;
 		Transaction tx = null;
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			session.saveOrUpdate(user);
+			session.saveOrUpdate(surr);
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -30,15 +30,16 @@ public class RegisterService {
 		return true;
 	}
 
-	public boolean isUserExists(User user) {
+	public boolean isSurrogateExists(Surrogate surr) {
 		Session session = HibernateUtil.openSession();
 		boolean result = false;
 		Transaction tx = null;
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from User where userId='" + user.getUserId() + "'");
-			User u = (User) query.uniqueResult();
+			Query query = session.createQuery("from Surrogate_table where SURR_Id='"
+					+ surr.getSurr_id() + "'");
+			Surrogate u = (Surrogate) query.uniqueResult();
 			tx.commit();
 			if (u != null)
 				result = true;
@@ -51,25 +52,4 @@ public class RegisterService {
 		}
 		return result;
 	}
-	
-	public boolean register(Surrogate surr){
-		 	 Session session = HibernateUtil.openSession();
-		 	 if(isSurrogateExists(surr)) return false;	
-		 	
-		 	 Transaction tx = null;	
-		 	 try {
-		 		 tx = session.getTransaction();
-		 		 tx.begin();
-		 		 session.saveOrUpdate(surr);		
-		 		 tx.commit();
-		 	 } catch (Exception e) {
-		 		 if (tx != null) {
-		 			 tx.rollback();
-		 		 }
-		 		 e.printStackTrace();
-		 	 } finally {
-		 		 session.close();
-		 	 }	
-		 	 return true;
-		 }*/
 }

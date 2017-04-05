@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>MVCApplication</display-name>
+  	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
   <servlet>
 		<display-name>LoginServlet</display-name>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.javatbi.controller.LoginServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<display-name>RegisterServlet</display-name>
-		<servlet-name>RegisterServlet</servlet-name>
-		<servlet-class>com.javatbi.controller.RegisterServlet</servlet-class>
+		<display-name>SurrogateServlet</display-name>
+		<servlet-name>SurrogateServlet</servlet-name>
+		<servlet-class>com.javatbi.controller.SurrogateServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -19,9 +22,7 @@
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/RegisterServlet</url-pattern>
 	</servlet-mapping>
-	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
-	</welcome-file-list>
+
 	
 	    <!-- SMTP settings -->
     <context-param>
@@ -31,7 +32,7 @@
  
     <context-param>
         <param-name>port</param-name>
-        <param-value>587</param-value>
+        <param-value>465</param-value>
     </context-param>
  
     <context-param>
