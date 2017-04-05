@@ -11,17 +11,15 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "APPLICATION", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "APP_ID"),})
+@Table(name = "APPLICATION", uniqueConstraints = { @UniqueConstraint(columnNames = "APP_ID"), })
 public class Application implements Serializable {
-	
-	@Id @GeneratedValue
-	@Column(name = "APP_ID",unique = true, nullable = false)
+	@Id
+	@GeneratedValue
+	@Column(name = "APP_ID", unique = true, nullable = false)
 	private Long app_id;
-
 	@ManyToOne
 	private Surrogate surr;
-	
+
 	public Long getApp_id() {
 		return app_id;
 	}
@@ -37,6 +35,4 @@ public class Application implements Serializable {
 	public void setSurr(Surrogate surr) {
 		this.surr = surr;
 	}
-
-	
 }
