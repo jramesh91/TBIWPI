@@ -19,13 +19,13 @@
 Please provide your credential to use this website
 <br />
 <br />
-<div id="login-box-name" style="margin-top:20px;">User Id:</div>
+<div id="login-box-name" style="margin-top:20px;">Email Id:</div>
 <div id="login-box-field" style="margin-top:20px;">
-<input name="userId" class="form-login" title="Username" value="" size="30" maxlength="50" />
+<input name="emailID" class="form-login" value="" size="30" maxlength="50" />
 </div>
 <div id="login-box-name">Password:</div>
 <div id="login-box-field">
-<input name="password" type="password" class="form-login" title="Password" value="" size="30" maxlength="48" />
+<input name="appID" type="password" class="form-login" title="Password" value="" size="30" maxlength="48" />
 </div>
 <br />
 <span class="login-box-options">

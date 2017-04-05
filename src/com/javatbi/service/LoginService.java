@@ -20,7 +20,7 @@ public class LoginService {
 		}
 	}
 
-	private User getUserByUserId(String userId) {
+	public User getUserByUserId(String userId) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		User user = null;

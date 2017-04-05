@@ -12,53 +12,63 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
-import com.javatbi.hibernate.util.HibernateUtil;
 import com.javatbi.model.Application;
 import com.javatbi.model.Surrogate;
-import com.javatbi.model.User;
-import com.javatbi.service.RegisterService;
+import com.javatbi.service.EmailUtility;
 
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
 
 public class RegisterServlet extends HttpServlet {
+	private String host;
+    private String port;
+    private String user;
+    private String pass;
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-	 response.setContentType("text/html;charset=UTF-8");
-	 PrintWriter out = response.getWriter();
-	 String firstName = request.getParameter("firstName");
-	 String middleName = request.getParameter("middleName");
-	 String lastName = request.getParameter("lastName");
+	
+		
 	 String email = request.getParameter("email");
-	 String userId = request.getParameter("userId");
-	 String password = request.getParameter("password");
-	 testForiegnKey();
-	 User user = new User(firstName,middleName,lastName, email,userId, password);
+
+	
+	 Surrogate surr = new Surrogate(email);
+	 Application app = new Application();
+	 Long app_id = app.getApp_id();
+	 
 			
-	 try {	
-		 RegisterService registerService = new RegisterService();
-		 boolean result = registerService.register(user);		
-		 out.println("<html>");
-		 out.println("<head>");		
-		 out.println("<title>Registration Successful</title>");		
-		 out.println("</head>");
-		 out.println("<body>");
-		 out.println("<center>");
-		 if(result){
-			 out.println("<h1>Thanks for Registering with us :</h1>");
-			 out.println("To login with new UserId and Password<a href=login.jsp>Click here</a>");
-		 }else{
-			 out.println("<h1>Registration Failed</h1>");
-			 out.println("To try again<a href=register.jsp>Click here</a>");
-		 }
-		 out.println("</center>");
-		 out.println("</body>");
-		 out.println("</html>");
-	 } finally {		
-		 out.close();
-	 }
-	 
-	 
-}
-	private void testForiegnKey()
+	
+	         ServletContext context = getServletContext();
+	         host = context.getInitParameter("host");
+	         port = context.getInitParameter("port");
+	         user = context.getInitParameter("user");
+	         pass = context.getInitParameter("pass");
+	     // reads form fields
+	         String recipient = request.getParameter("recipient");
+	         String subject = "UMass Application ID: " + app_id;
+	         String content = "Hey, thank you for registering. Please note down your application number and use this to access your application in the future. Application ID : "+app_id;
+	  
+	         String resultMessage = "";
+	  
+	         try {
+	             EmailUtility.sendEmail(host, port, user, pass, email, subject,content);
+	             resultMessage = "Successful";
+	         } catch (Exception ex) {
+	             ex.printStackTrace();
+	             resultMessage = "There were an error: " + ex.getMessage();
+	         } finally {
+	             request.setAttribute("Message", resultMessage);
+	             getServletContext().getRequestDispatcher("/index.jsp").forward(
+	                     request, response);
+	         }
+	     }}
+	/*private void testForiegnKey()
 	 {
 		Session session = HibernateUtil.openSession();
         session.beginTransaction();
@@ -97,4 +107,4 @@ public class RegisterServlet extends HttpServlet {
         //HibernateUtil.shutdown();
 	 }
 
-}
+}*/

@@ -14,11 +14,20 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "APPLICATION", uniqueConstraints = { @UniqueConstraint(columnNames = "APP_ID"), })
 public class Application implements Serializable {
 	@Id
-	@GeneratedValue
+	//@GeneratedValue
 	@Column(name = "APP_ID", unique = true, nullable = false)
 	private Long app_id;
 	@ManyToOne
 	private Surrogate surr;
+
+	public Application(Long app_id) {
+		super();
+		this.app_id = app_id;
+	}
+
+	public Application() {
+		super();
+	}
 
 	public Long getApp_id() {
 		return app_id;

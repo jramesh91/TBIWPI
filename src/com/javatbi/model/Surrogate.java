@@ -28,9 +28,8 @@ public class Surrogate implements Serializable {
 		super();
 	}
 
-	public Surrogate(Long surr_id, String surr_email) {
+	public Surrogate( String surr_email) {
 		super();	
-		this.surr_id = surr_id;
 		this.surr_email = surr_email;
 	}
 
